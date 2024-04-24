@@ -1,0 +1,230 @@
+:root {
+  /*! 1rem = 16px */
+  --title: 2.4rem;
+  --subtitle: 1.6rem;
+  --title-color: hsl(0, 0%, 93%);
+  --map-color: hsl(192, 74%, 35%);
+}
+
+@font-face {
+  font-family: "expMedium";
+  src: url(./assets/fonts/exp-medium.woff2) format("woff2");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Hellombah";
+  src: url(./assets/fonts/Hellombah.woff2) format("woff2");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Raleway", sans-serif;
+  background-size: cover;
+  background-position: center;
+  background-image: url(./assets/images/background.svg);
+  backdrop-filter: blur(4px);
+}
+
+.wrapper {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+}
+
+.wrapper__title {
+  position: relative;
+}
+
+.wrapper__title h1 {
+  font-size: clamp(24px, 3vw, 6vw);
+  font-family: "expMedium";
+  color: var(--title-color);
+  text-shadow: 4px 4px #000000;
+  cursor: default;
+  margin: 0;
+}
+
+.wrapper__title .h3title {
+  position: absolute;
+  top: 60%;
+  left: 80%;
+  font-family: "Hellombah";
+  font-size: clamp(24px, 3vw, 6vw);
+  color: #d83838;
+  font-style: italic;
+  vertical-align: bottom;
+  text-shadow: 2px 2px #000000;
+  cursor: default;
+}
+
+.wrapper svg {
+  max-width: 60%;
+  height: auto;
+}
+
+.wrapper svg g {
+  filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
+}
+
+.city {
+  fill: var(--map-color);
+  fill-opacity: 1;
+  stroke: rgb(255, 255, 255);
+  stroke-opacity: 1;
+  stroke-width: 0.5;
+  -webkit-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+  cursor: pointer;
+}
+
+.city:hover {
+  fill: #eeeeee;
+}
+
+.show-city-name {
+  background-color: #31363f;
+  border-radius: 10px;
+  color: #eeeeee;
+  position: absolute;
+  padding: 15px 25px;
+  opacity: 0;
+  visibility: hidden;
+  font-size: 16px;
+}
+
+.show-city-name--active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.location__title {
+  color: #98eaff;
+}
+
+.location__text {
+  font-family: "expMedium", sans-serif;
+  color: var(--title-color);
+  cursor: default;
+}
+
+.map__container,
+.dialog__close:not(dialog[open]) {
+  user-select: none;
+}
+
+dialog[open] {
+  width: 340px;
+  height: 420px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: #202020;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  border-radius: 20px;
+  border: none;
+  color: #eeeeee;
+  -webkit-animation: fade-in-fwd 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  animation: fade-in-fwd 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+
+#dialog__container p {
+  font-size: 18px;
+  padding-bottom: 10px;
+}
+
+#degree {
+  font-size: 32px !important;
+  font-weight: bold;
+}
+
+@-webkit-keyframes fade-in-fwd {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fade-in-fwd {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.text__grid {
+  display: flex;
+  flex-direction: row;
+}
+
+.text__grid p {
+  display: flex;
+  align-items: center;
+  margin: 6px 10px 0;
+}
+
+.text__grid span {
+  font-size: 16px;
+  padding-left: 6px;
+  color: #98eaff;
+}
+
+.dialog__close {
+  padding: 10px 30px;
+  margin-top: 10px;
+  font-family: "expMedium", sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 10px;
+  background-color: #98eaff;
+  color: #2e2e2e;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.dialog__close:hover {
+  background-color: #257b91;
+}
+
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+dialog h2 {
+  font-size: 32px;
+  padding: 6px;
+}
+
+@media (max-width: 800px) {
+  .wrapper svg {
+    max-width: 86%;
+    height: auto;
+    padding: 50px;
+  }
+  .wrapper {
+    justify-content: center;
+  }
+  .show-city-name {
+    border-radius: 6px;
+    padding: 10px 15px;
+    font-size: 12px;
+  }
+}
